@@ -3,3 +3,4 @@ numpy
 altair
 streamlit_extras
 streamlit_js_eval
+geopandas
