@@ -54,6 +54,8 @@ def create_scatterplot_dataset(data):
 
 
 def create_shooter_dataset(team_data,criteria):
+    st.write(team_data.head)
+    
     shots_made_by_player = team_data[team_data['made_shot']].groupby(['shooting_team','shooting_player']).size().reset_index().rename(columns={0:'shots_made'})
     # shots_made_by_player['shots_missed'] = None
 
@@ -71,7 +73,7 @@ def create_shooter_dataset(team_data,criteria):
     top_players['Name'] = top_players['shooting_player'].apply(reduce_player_name)
     multiteam_players = {}
     for player in top_players['Name']:
-        st.write(top_players.columns)
+        st.write(top_players.head)
         if len(top_players[top_players['Name']==player]['shooting_team'].unique())>1:
             # Then that player has been a top shooter for more than one team. Her data should not be shown together
             player_teams = top_players[top_players['Name']==player]['shooting_team'].unique()
