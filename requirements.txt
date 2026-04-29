@@ -1,6 +1,6 @@
-pandas==2.3.1
 numpy
 altair
 streamlit_extras
 streamlit_js_eval
 geopandas
+pandas==2.3.1
