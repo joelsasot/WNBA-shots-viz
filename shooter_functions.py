@@ -65,9 +65,10 @@ def create_shooter_dataset(team_data,criteria):
     shots_by_player['accuracy'] = round((shots_by_player['shots_made'] / shots_by_player['All'])*100,2)
     points_by_player = team_data.groupby(['shooting_team','shooting_player'])['shot_value'].sum().reset_index().rename(columns={'shot_value':'points_scored'})
     shots_by_player = shots_by_player.merge(points_by_player, on=['shooting_team','shooting_player'])
-    top_players = shots_by_player.groupby('shooting_team', group_keys=False).apply(
-        lambda group: group.nlargest(5, 'All')
-    ).reset_index(level=0)
+    # top_players = shots_by_player.groupby('shooting_team', group_keys=False).apply(
+    #     lambda group: group.nlargest(5, 'All')
+    # ).reset_index(level=0)
+    top_players = shots_by_player.groupby('shooting_team').reset_index(level=0)
     st.write(top_players.columns)
     top_players = sort_top_players(top_players,criteria)
     top_players['Name'] = top_players['shooting_player'].apply(reduce_player_name)
