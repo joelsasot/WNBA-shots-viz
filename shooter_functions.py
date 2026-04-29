@@ -70,7 +70,7 @@ def create_shooter_dataset(team_data,criteria):
     # ).reset_index(level=0)
     st.write(shots_by_player.columns)
     top_players = shots_by_player.groupby(['shooting_team']).sum().reset_index()
-    st.write(top_players.columns)
+    st.write(pd.__version__)
     top_players = sort_top_players(top_players,criteria)
     top_players['Name'] = top_players['shooting_player'].apply(reduce_player_name)
     multiteam_players = {}
