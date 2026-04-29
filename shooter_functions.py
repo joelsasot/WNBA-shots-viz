@@ -68,13 +68,14 @@ def create_shooter_dataset(team_data,criteria):
     top_players = shots_by_player.groupby('shooting_team', group_keys=False).apply(
         lambda group: group.nlargest(5, 'All')
     ).reset_index(level=0)
+    st.write(top_players.columns)
     top_players = sort_top_players(top_players,criteria)
     top_players['Name'] = top_players['shooting_player'].apply(reduce_player_name)
     multiteam_players = {}
     
     for player in top_players['Name']:
-        st.write(top_players[top_players['Name']==player])
-        st.write(top_players[top_players['Name']==player].columns)
+        # st.write(top_players[top_players['Name']==player])
+        # st.write(top_players[top_players['Name']==player].columns)
         
         if len(top_players[top_players['Name']==player]['shooting_team'].unique())>1:
             # Then that player has been a top shooter for more than one team. Her data should not be shown together
